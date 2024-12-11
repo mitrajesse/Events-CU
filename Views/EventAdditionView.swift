@@ -10,6 +10,7 @@ struct EventAdditionView: View {
     @State private var errorMessage: String? = nil
     @State private var isSubmitting: Bool = false
     @State private var showErrorAlert: Bool = false // Tracks whether to show the error alert
+    @State private var organizer: String = ""
 
     @EnvironmentObject var userViewModel: UserViewModel // Assuming the organizer is the logged-in user
 
@@ -29,6 +30,11 @@ struct EventAdditionView: View {
 
                 VStack(spacing: 15) {
                     TextField("Event Name", text: $name)
+                        .autocapitalization(.words)
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(8)
+                    TextField("Organized By", text: $organizer)
                         .autocapitalization(.words)
                         .padding()
                         .background(Color.white)
@@ -111,7 +117,8 @@ struct EventAdditionView: View {
             date: date,
             isOffCampus: isOffCampus,
             rsvp: [],
-            organizer: organizerName // Organizer's ID or name
+            organizer: organizer
+
         )
 
         // Save to Firestore
@@ -134,6 +141,7 @@ struct EventAdditionView: View {
         location = ""
         date = Date()
         isOffCampus = false
+        organizer = ""
     }
 }
 
