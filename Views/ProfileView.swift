@@ -25,7 +25,7 @@ struct ProfileView: View {
                     .padding()
 
                 if isLoggedIn {
-                    Text("Logged in as \(Auth.auth().currentUser?.email ?? "Unknown")")
+                    Text("Logged in as \(email)")
                         .foregroundColor(.white)
                         .padding(.bottom, 20)
 
@@ -96,6 +96,9 @@ struct ProfileView: View {
             .padding()
             .onAppear {
                 checkLoginState()
+                if isLoggedIn {
+                    fetchUserData()
+                }
             }
             .alert(isPresented: $showAlert) {
                 Alert(title: Text("Account"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
@@ -116,6 +119,8 @@ struct ProfileView: View {
         do {
             try Auth.auth().signOut()
             self.isLoggedIn = false
+            self.name = ""
+            self.email = ""
             self.alertMessage = "Signed out successfully!"
             self.showAlert = true
         } catch {
@@ -148,6 +153,7 @@ struct ProfileView: View {
             self.isLoggedIn = true
             self.alertMessage = "Logged in successfully!"
             self.showAlert = true
+            self.fetchUserData() // Fetch user data after login
         }
     }
 
@@ -171,7 +177,6 @@ struct ProfileView: View {
                 return
             }
 
-            // Send verification email
             user.sendEmailVerification { error in
                 if let error = error {
                     self.alertMessage = "Failed to send verification email: \(error.localizedDescription)"
@@ -182,7 +187,6 @@ struct ProfileView: View {
                 }
             }
 
-            // Save user data in Firestore
             let db = Firestore.firestore()
             let userData: [String: Any] = [
                 "name": name,
@@ -197,12 +201,27 @@ struct ProfileView: View {
                 }
             }
 
-            // Immediately log out the user after account creation
             do {
                 try Auth.auth().signOut()
             } catch {
                 self.alertMessage = "Failed to log out after account creation. Please restart the app."
                 self.showAlert = true
+            }
+        }
+    }
+
+    private func fetchUserData() {
+        guard let currentUser = Auth.auth().currentUser else { return }
+        let db = Firestore.firestore()
+        let userDoc = db.collection("Users").document(currentUser.uid)
+        userDoc.getDocument { snapshot, error in
+            if let error = error {
+                print("Failed to fetch user data: \(error.localizedDescription)")
+                return
+            }
+
+            if let data = snapshot?.data(), let userName = data["name"] as? String {
+                self.name = userName
             }
         }
     }
@@ -229,6 +248,7 @@ struct ProfileView: View {
             if success {
                 self.alertMessage = "Account deleted successfully."
                 self.isLoggedIn = false
+                self.name = ""
             } else {
                 self.alertMessage = "Failed to delete account: \(error ?? "Unknown error")."
             }
