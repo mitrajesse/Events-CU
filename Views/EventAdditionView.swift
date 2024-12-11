@@ -1,3 +1,10 @@
+//
+//  EventAdditionView.swift
+//  Events@CU
+//
+//  Created by Jesse Mitra and Abe Howder on 12/12/24.
+//
+
 import SwiftUI
 import FirebaseFirestore
 
@@ -98,7 +105,7 @@ struct EventAdditionView: View {
 
     // MARK: - Add Event to Firestore
     private func addEvent() {
-        guard !name.isEmpty, !description.isEmpty, !location.isEmpty else {
+        guard !name.isEmpty, !organizer.isEmpty, !description.isEmpty, !location.isEmpty else {
             errorMessage = "Please fill in all fields."
             showErrorAlert = true
             return

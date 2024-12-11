@@ -1,4 +1,9 @@
-
+//
+//  EventsViewModel.swift
+//  Events@CU
+//
+//  Created by Jesse Mitra and Abe Howder on 12/12/24.
+//
 
 import FirebaseFirestore
 

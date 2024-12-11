@@ -2,14 +2,7 @@
 //  RSVPEventsView.swift
 //  Events@CU
 //
-//  Created by Jesse Mitra on 11/20/24.
-//
-
-//
-//  MyEventsView.swift
-//  Events@CU
-//
-//  Created by Jesse Mitra on 11/12/24.
+//  Created by Jesse Mitra and Abe Howder on 12/12/24.
 //
 
 import SwiftUI

@@ -2,12 +2,11 @@
 //  Events_CUApp.swift
 //  Events@CU
 //
-//  Created by Jesse Mitra on 9/12/24.
+//  Created by Jesse Mitra and Abe Howder on 12/12/24.
 //
 
 import SwiftUI
 import FirebaseCore
-
 
 class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
