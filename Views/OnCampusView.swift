@@ -8,7 +8,17 @@ struct OnCampusView: View {
 
     var body: some View {
         VStack {
-            List(eventsViewModel.onCampusEvents) { event in
+            Picker("Sort by", selection: $eventsViewModel.sortOrder) {
+                Text("Date Ascending").tag(EventsViewModel.SortOrder.dateAscending)
+                Text("Date Descending").tag(EventsViewModel.SortOrder.dateDescending)
+                Text("Name Ascending").tag(EventsViewModel.SortOrder.nameAscending)
+                Text("Name Descending").tag(EventsViewModel.SortOrder.nameDescending)
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            .padding()
+            
+            
+            List(eventsViewModel.sortedOnCampusEvents) { event in
                 NavigationLink(destination: EventDetailView(event: event)) {
                     VStack(alignment: .leading) {
                         Text(event.name)

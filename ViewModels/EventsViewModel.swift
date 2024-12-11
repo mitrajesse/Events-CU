@@ -5,6 +5,11 @@ import FirebaseFirestore
 class EventsViewModel: ObservableObject {
     @Published var onCampusEvents: [Event] = []
     @Published var offCampusEvents: [Event] = []
+    @Published var sortOrder: SortOrder = .dateAscending
+
+    enum SortOrder {
+        case dateAscending, dateDescending, nameAscending, nameDescending
+    }
 
     func fetchEvents(isOffCampus: Bool, completion: @escaping ([Event]) -> Void) {
         let db = Firestore.firestore()
@@ -42,5 +47,24 @@ class EventsViewModel: ObservableObject {
                 // Return the fetched events to the completion handler
                 completion(fetchedEvents)
             }
+    }
+    var sortedOnCampusEvents: [Event] {
+        sortEvents(events: onCampusEvents)
+    }
+    var sortedOffCampusEvents: [Event] {
+        sortEvents(events: offCampusEvents)
+    }
+    
+    private func sortEvents(events: [Event]) -> [Event] {
+        switch sortOrder {
+        case .dateAscending:
+            return events.sorted { $0.date < $1.date }
+        case .dateDescending:
+            return events.sorted { $0.date > $1.date }
+        case .nameAscending:
+            return events.sorted { $0.name.lowercased() < $1.name.lowercased() }
+        case .nameDescending:
+            return events.sorted { $0.name.lowercased() > $1.name.lowercased() }
+        }
     }
 }
