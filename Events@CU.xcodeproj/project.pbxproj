@@ -134,11 +134,11 @@
 		AFCEDCF32C951E4700173EE2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				139C55D92D097EE6004766B7 /* SortMenuButton.swift */,
 				1B01C8C82C9393F700C50DDC /* ContentView.swift */,
 				1B6948472CEA833200770CAE /* HomeView.swift */,
 				AFCEDCF62C9522B100173EE2 /* OnCampusView.swift */,
 				AFCEDCF82C95244C00173EE2 /* OffCampusView.swift */,
+				139C55D92D097EE6004766B7 /* SortMenuButton.swift */,
 				1B6948452CEA7A1900770CAE /* MoreView.swift */,
 				1BCDD03C2CE2DCBF00388723 /* EventDetailView.swift */,
 				1372053E2CE78353001F1073 /* ProfileView.swift */,
@@ -380,6 +380,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -413,6 +414,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

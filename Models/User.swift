@@ -1,6 +1,3 @@
-
-
-
 import Foundation
 import FirebaseFirestore
 import FirebaseAuth
@@ -12,7 +9,6 @@ struct User {
 
     private static let db = Firestore.firestore()
 
-    // MARK: - Fetch User by ID
     static func fetchUser(by id: String, completion: @escaping (User?) -> Void) {
         let userDoc = db.collection("Users").document(id)
         userDoc.getDocument { snapshot, error in
@@ -28,14 +24,8 @@ struct User {
         }
     }
 
-    // MARK: - Save User Data
-    func save(completion: @escaping (Bool, String?) -> Void) {
-        let userData: [String: Any] = [
-            "name": self.name,
-            "email": self.email
-        ]
-
-        User.db.collection("Users").document(self.id).setData(userData, merge: true) { error in
+    static func deleteUserData(userId: String, completion: @escaping (Bool, String?) -> Void) {
+        db.collection("Users").document(userId).delete { error in
             if let error = error {
                 completion(false, error.localizedDescription)
             } else {
