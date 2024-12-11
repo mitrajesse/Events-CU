@@ -13,6 +13,7 @@
 		1372053B2CE6C7A7001F1073 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 1372053A2CE6C7A7001F1073 /* FirebaseFirestore */; };
 		1372053D2CE78183001F1073 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1372053C2CE78183001F1073 /* GoogleService-Info.plist */; };
 		1372053F2CE78353001F1073 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1372053E2CE78353001F1073 /* ProfileView.swift */; };
+		139C55DA2D097EE6004766B7 /* SortMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139C55D92D097EE6004766B7 /* SortMenuButton.swift */; };
 		1B01C8C72C9393F700C50DDC /* Events_CUApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B01C8C62C9393F700C50DDC /* Events_CUApp.swift */; };
 		1B01C8C92C9393F700C50DDC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B01C8C82C9393F700C50DDC /* ContentView.swift */; };
 		1B01C8CB2C9393F700C50DDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B01C8CA2C9393F700C50DDC /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		1372053C2CE78183001F1073 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1372053E2CE78353001F1073 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		139C55D92D097EE6004766B7 /* SortMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortMenuButton.swift; sourceTree = "<group>"; };
 		1B01C8C32C9393F700C50DDC /* Events@CU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Events@CU.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B01C8C62C9393F700C50DDC /* Events_CUApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events_CUApp.swift; sourceTree = "<group>"; };
 		1B01C8C82C9393F700C50DDC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 		AFCEDCF32C951E4700173EE2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				139C55D92D097EE6004766B7 /* SortMenuButton.swift */,
 				1B01C8C82C9393F700C50DDC /* ContentView.swift */,
 				1B6948472CEA833200770CAE /* HomeView.swift */,
 				AFCEDCF62C9522B100173EE2 /* OnCampusView.swift */,
@@ -229,6 +232,7 @@
 				1B6948482CEA833500770CAE /* HomeView.swift in Sources */,
 				1BCACAC32CE8256700B91FED /* ShareSheet.swift in Sources */,
 				1B0C4E672CEE708200161843 /* RSVPEventsView.swift in Sources */,
+				139C55DA2D097EE6004766B7 /* SortMenuButton.swift in Sources */,
 				1BCDD03D2CE2DCC700388723 /* EventDetailView.swift in Sources */,
 				AFCEDCF92C95244C00173EE2 /* OffCampusView.swift in Sources */,
 				1B7331782CE3FA62002DEDF1 /* AboutUsView.swift in Sources */,
