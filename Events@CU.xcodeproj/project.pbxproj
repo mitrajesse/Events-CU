@@ -66,6 +66,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				EventsViewModel.swift,
+				ProfileViewModel.swift,
 				UserViewModel.swift,
 			);
 			target = 1B01C8C22C9393F700C50DDC /* Events@CU */;

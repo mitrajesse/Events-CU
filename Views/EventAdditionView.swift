@@ -16,63 +16,66 @@ struct EventAdditionView: View {
     @State private var isOffCampus: Bool = false
     @State private var errorMessage: String? = nil
     @State private var isSubmitting: Bool = false
-    @State private var showErrorAlert: Bool = false // Tracks whether to show the error alert
+    @State private var showErrorAlert: Bool = false
     @State private var organizer: String = ""
 
-    @EnvironmentObject var userViewModel: UserViewModel // Assuming the organizer is the logged-in user
+    @EnvironmentObject var userViewModel: UserViewModel
 
     let db = Firestore.firestore()
 
     var body: some View {
         ZStack {
-            Color(UIColor(red: 0/255, green: 56/255, blue: 101/255, alpha: 1)) // Hex #003865
+            Color(UIColor(red: 0/255, green: 56/255, blue: 101/255, alpha: 1))
                 .ignoresSafeArea()
 
             VStack(spacing: 20) {
                 Text("Add New Event")
                     .font(.largeTitle)
                     .bold()
-                    .foregroundColor(Color(UIColor(red: 252/255, green: 183/255, blue: 22/255, alpha: 1))) // Hex #fcb716
+                    .foregroundColor(Color(UIColor(red: 252/255, green: 183/255, blue: 22/255, alpha: 1)))
                     .padding()
 
-                VStack(spacing: 15) {
-                    TextField("Event Name", text: $name)
-                        .autocapitalization(.words)
-                        .padding()
-                        .background(Color.white)
-                        .cornerRadius(8)
-                    TextField("Organized By", text: $organizer)
-                        .autocapitalization(.words)
-                        .padding()
-                        .background(Color.white)
-                        .cornerRadius(8)
-
-                    VStack(alignment: .leading) {
-                        Text("Description")
-                            .foregroundColor(.white)
-                        TextEditor(text: $description)
+                ScrollView {
+                    VStack(spacing: 15) {
+                        TextField("Event Name", text: $name)
+                            .autocapitalization(.words)
                             .padding()
                             .background(Color.white)
                             .cornerRadius(8)
-                            .frame(height: 150)
+                        TextField("Organized By", text: $organizer)
+                            .autocapitalization(.words)
+                            .padding()
+                            .background(Color.white)
+                            .cornerRadius(8)
+
+                        VStack(alignment: .leading) {
+                            Text("Description")
+                                .foregroundColor(.white)
+                            TextEditor(text: $description)
+                                .padding()
+                                .background(Color.white)
+                                .cornerRadius(8)
+                                .frame(height: 150)
+                        }
+
+                        TextField("Event Location", text: $location)
+                            .autocapitalization(.words)
+                            .padding()
+                            .background(Color.white)
+                            .cornerRadius(8)
+
+                        DatePicker("Event Time", selection: $date, displayedComponents: [.date, .hourAndMinute])
+                            .padding()
+                            .background(Color.white)
+                            .cornerRadius(8)
+
+                        Toggle("Off-Campus Event", isOn: $isOffCampus)
+                            .toggleStyle(SwitchToggleStyle(tint: Color(UIColor(red: 252/255, green: 183/255, blue: 22/255, alpha: 1))))
+                            .padding()
+                            .background(Color.white)
+                            .cornerRadius(8)
                     }
-
-                    TextField("Event Location", text: $location)
-                        .autocapitalization(.words)
-                        .padding()
-                        .background(Color.white)
-                        .cornerRadius(8)
-
-                    DatePicker("Event Time", selection: $date, displayedComponents: [.date, .hourAndMinute])
-                        .padding()
-                        .background(Color.white)
-                        .cornerRadius(8)
-
-                    Toggle("Off-Campus Event", isOn: $isOffCampus)
-                        .toggleStyle(SwitchToggleStyle(tint: Color(UIColor(red: 252/255, green: 183/255, blue: 22/255, alpha: 1))))
-                        .padding()
-                        .background(Color.white)
-                        .cornerRadius(8)
+                    .padding(.horizontal)
                 }
 
                 Button(action: {
@@ -87,10 +90,10 @@ struct EventAdditionView: View {
                         .cornerRadius(10)
                 }
                 .disabled(isSubmitting)
+                .padding(.horizontal)
 
                 Spacer()
             }
-            .padding()
         }
         .alert(isPresented: $showErrorAlert) {
             Alert(
@@ -115,7 +118,6 @@ struct EventAdditionView: View {
 
         let organizerName = userViewModel.currentUser?.name ?? "Unknown Organizer"
 
-        // Create a new Event object
         let newEvent = Event(
             id: UUID().uuidString,
             name: name,
@@ -125,10 +127,8 @@ struct EventAdditionView: View {
             isOffCampus: isOffCampus,
             rsvp: [],
             organizer: organizer
-
         )
 
-        // Save to Firestore
         db.collection("Events").document(newEvent.id).setData(newEvent.toDictionary()) { error in
             isSubmitting = false
             if let error = error {
