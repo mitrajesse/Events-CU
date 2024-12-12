@@ -28,12 +28,6 @@ struct MoreView: View {
                     NavigationLink(destination: EventAdditionView()) {
                         createButton(title: "Add an Event")
                     }
-                    NavigationLink(destination: EditEventsView()) {
-                        createButton(title: "Edit or Remove Events")
-                    }
-                    NavigationLink(destination: RSVPEventsView()) {
-                        createButton(title: "RSVP'd Events")
-                    }
                     NavigationLink(destination: ContactUsView()) {
                         createButton(title: "Contact Us")
                     }

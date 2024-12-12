@@ -125,7 +125,6 @@ struct EventAdditionView: View {
             location: location,
             date: date,
             isOffCampus: isOffCampus,
-            rsvp: [],
             organizer: organizer
         )
 

@@ -15,18 +15,16 @@ struct Event: Identifiable {
     var location: String
     var date: Date
     var isOffCampus: Bool
-    var rsvp: [String]
     var organizer: String
 
     // MARK: - Custom Initializer
-    init(id: String, name: String, description: String, location: String, date: Date, isOffCampus: Bool, rsvp: [String], organizer: String) {
+    init(id: String, name: String, description: String, location: String, date: Date, isOffCampus: Bool, organizer: String) {
         self.id = id
         self.name = name
         self.description = description
         self.location = location
         self.date = date
         self.isOffCampus = isOffCampus
-        self.rsvp = rsvp
         self.organizer = organizer
     }
 
@@ -39,7 +37,6 @@ struct Event: Identifiable {
             let location = data["location"] as? String,
             let timestamp = data["date"] as? Timestamp,
             let isOffCampus = data["isOffCampus"] as? Bool,
-            let rsvp = data["rsvp"] as? [String],
             let organizer = data["organizer"] as? String
         else {
             return nil
@@ -50,7 +47,6 @@ struct Event: Identifiable {
         self.location = location
         self.date = timestamp.dateValue()
         self.isOffCampus = isOffCampus
-        self.rsvp = rsvp
         self.organizer = organizer
     }
 
@@ -62,7 +58,6 @@ struct Event: Identifiable {
             "location": location,
             "date": Timestamp(date: date),
             "isOffCampus": isOffCampus,
-            "rsvp": rsvp,
             "organizer": organizer
         ]
     }

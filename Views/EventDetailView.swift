@@ -15,7 +15,6 @@ struct EventDetailView: View {
     @State var event: Event
     @EnvironmentObject var userViewModel: UserViewModel // Bindable to an @Observable object
 
-    @State private var isRSVPed: Bool = false
     @State private var isShareSheetShowing = false
     @State private var errorMessage: String? = nil
     @State private var showErrorAlert: Bool = false // Tracks whether to show the error alert
@@ -69,14 +68,6 @@ struct EventDetailView: View {
 
                     // Centered HStack with icon-only buttons at the bottom of the screen
                     HStack(spacing: 40) {
-                        Button(action: toggleRSVP) {
-                            Image(systemName: isRSVPed ? "checkmark.circle.fill" : "checkmark.circle") // RSVP icon
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 40, height: 40)
-                                .foregroundColor(barBackgroundColor)
-                        }
-
                         Button(action: {
                             isShareSheetShowing = true // Show the share sheet
                         }) {
@@ -110,12 +101,6 @@ struct EventDetailView: View {
                 .padding(.top)
             }
         }
-        .onAppear {
-            // Check if the user is already RSVP'd
-            if let userId = userViewModel.currentUser?.id {
-                isRSVPed = event.rsvp.contains(userId)
-            }
-        }
         .alert(isPresented: $showErrorAlert) {
             Alert(
                 title: Text("Error"),
@@ -133,37 +118,5 @@ struct EventDetailView: View {
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
         return formatter.string(from: date)
-    }
-
-    private func toggleRSVP() {
-        guard let userId = userViewModel.currentUser?.id else {
-            errorMessage = "You must be signed in to RSVP."
-            showErrorAlert = true
-            return
-        }
-
-        errorMessage = nil
-
-        // Toggle RSVP
-        if isRSVPed {
-            if let index = event.rsvp.firstIndex(of: userId) {
-                event.rsvp.remove(at: index)
-            }
-        } else {
-            event.rsvp.append(userId)
-        }
-
-        updateEventInFirestore()
-        isRSVPed.toggle()
-    }
-
-    private func updateEventInFirestore() {
-        let db = Firestore.firestore()
-        db.collection("Events").document(event.id).setData(event.toDictionary(), merge: true) { error in
-            if let error = error {
-                errorMessage = "Failed to update RSVP: \(error.localizedDescription)"
-                showErrorAlert = true
-            }
-        }
     }
 }
