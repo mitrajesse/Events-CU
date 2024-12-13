@@ -1,10 +1,3 @@
-//
-//  EventAdditionView.swift
-//  Events@CU
-//
-//  Created by Jesse Mitra and Abe Howder on 12/12/24.
-//
-
 import SwiftUI
 import FirebaseFirestore
 
@@ -39,41 +32,58 @@ struct EventAdditionView: View {
                     VStack(spacing: 15) {
                         TextField("Event Name", text: $name)
                             .autocapitalization(.words)
+                            .foregroundColor(.black)
                             .padding()
                             .background(Color.white)
                             .cornerRadius(8)
+                            .accentColor(.black)
+                            .colorScheme(.light)
+                        
                         TextField("Organized By", text: $organizer)
                             .autocapitalization(.words)
+                            .foregroundColor(.black)
                             .padding()
                             .background(Color.white)
                             .cornerRadius(8)
+                            .accentColor(.black)
+                            .colorScheme(.light)
 
                         VStack(alignment: .leading) {
                             Text("Description")
                                 .foregroundColor(.white)
                             TextEditor(text: $description)
+                                .foregroundColor(.black)
                                 .padding()
                                 .background(Color.white)
                                 .cornerRadius(8)
                                 .frame(height: 150)
+                                .accentColor(.black)
+                                .colorScheme(.light)
                         }
 
                         TextField("Event Location", text: $location)
                             .autocapitalization(.words)
+                            .foregroundColor(.black)
                             .padding()
                             .background(Color.white)
                             .cornerRadius(8)
+                            .accentColor(.black)
+                            .colorScheme(.light)
 
                         DatePicker("Event Time", selection: $date, displayedComponents: [.date, .hourAndMinute])
                             .padding()
                             .background(Color.white)
                             .cornerRadius(8)
+                            .accentColor(.black)
+                            .colorScheme(.light)
 
                         Toggle("Off-Campus Event", isOn: $isOffCampus)
                             .toggleStyle(SwitchToggleStyle(tint: Color(UIColor(red: 252/255, green: 183/255, blue: 22/255, alpha: 1))))
                             .padding()
                             .background(Color.white)
                             .cornerRadius(8)
+                            .accentColor(.black)
+                            .colorScheme(.light)
                     }
                     .padding(.horizontal)
                 }
