@@ -133,8 +133,6 @@ struct EventAdditionView: View {
 
         isSubmitting = true
 
-        let organizerName = userViewModel.currentUser?.name ?? "Unknown Organizer"
-
         let newEvent = Event(
             id: UUID().uuidString,
             name: name,
