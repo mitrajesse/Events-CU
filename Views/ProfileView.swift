@@ -105,6 +105,8 @@ struct ProfileView: View {
         TextField("Name", text: $viewModel.name)
             .autocapitalization(.words)
             .textFieldStyle(AuthTextFieldStyle())
+            .accentColor(.black)
+            .colorScheme(.light)
     }
     
     private var emailTextField: some View {
@@ -112,6 +114,8 @@ struct ProfileView: View {
             .autocapitalization(.none)
             .keyboardType(.emailAddress)
             .textFieldStyle(AuthTextFieldStyle())
+            .accentColor(.black)
+            .colorScheme(.light)
     }
     
     private var passwordTextField: some View {
@@ -119,6 +123,8 @@ struct ProfileView: View {
             .autocapitalization(.none)
             .textContentType(.password)
             .textFieldStyle(AuthTextFieldStyle())
+            .accentColor(.black)
+            .colorScheme(.light)
     }
     
     private var authenticationButton: some View {
