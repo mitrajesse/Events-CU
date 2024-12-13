@@ -36,12 +36,15 @@ struct OnCampusView: View {
                         }
                         Divider()
                             .background(Color.white.opacity(0.5)) // Customize divider appearance
+                            .padding(.horizontal, -20) // Extend divider edge to edge
                     }
                     .padding(.vertical, 8)
                 }
                 .listRowBackground(appBackgroundColor)
+                .listRowSeparator(.hidden) // Hide the built-in separators completely
             }
             .listStyle(PlainListStyle())
+            .scrollContentBackground(.hidden) // Removes default background from List
         }
         .background(appBackgroundColor.ignoresSafeArea())
         .navigationBarTitle("On Campus", displayMode: .inline)
@@ -64,3 +67,4 @@ struct OnCampusView: View {
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
     }
 }
+
