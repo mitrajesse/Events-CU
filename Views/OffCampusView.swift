@@ -15,23 +15,29 @@ struct OffCampusView: View {
 
     var body: some View {
         VStack {
-            List(eventsViewModel.sortedOffCampusEvents) { event in
-                NavigationLink(destination: EventDetailView(event: event)) {
-                    VStack(alignment: .leading) {
-                        Text(event.name)
-                            .font(.headline)
-                            .bold()
-                            .foregroundColor(.white)
-                        Text(event.date.formatted(date: .abbreviated, time: .shortened))
-                            .font(.subheadline)
-                            .bold()
-                            .foregroundColor(.white)
-                        Text(event.location)
-                            .font(.subheadline)
-                            .bold()
-                            .foregroundColor(barBackgroundColor)
+            List {
+                ForEach(eventsViewModel.sortedOffCampusEvents) { event in
+                    VStack(alignment: .leading, spacing: 4) {
+                        NavigationLink(destination: EventDetailView(event: event)) {
+                            VStack(alignment: .leading) {
+                                Text(event.name)
+                                    .font(.headline)
+                                    .bold()
+                                    .foregroundColor(.white)
+                                Text(event.date.formatted(date: .abbreviated, time: .shortened))
+                                    .font(.subheadline)
+                                    .bold()
+                                    .foregroundColor(.white)
+                                Text(event.location)
+                                    .font(.subheadline)
+                                    .bold()
+                                    .foregroundColor(barBackgroundColor)
+                            }
+                        }
+                        Divider()
+                            .background(Color.white.opacity(0.5)) // Customize divider appearance
                     }
-                    .padding()
+                    .padding(.vertical, 8)
                 }
                 .listRowBackground(appBackgroundColor)
             }
