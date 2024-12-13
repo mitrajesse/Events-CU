@@ -88,6 +88,18 @@ struct ProfileView: View {
         }
     }
     
+    private var resendVerificationButton: some View {
+        Button(action: viewModel.resendVerificationEmail) {
+            Text("Resend Verification Email")
+                .bold()
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(Color(UIColor(red: 252/255, green: 183/255, blue: 22/255, alpha: 1))) // Matches the "Sign In" button background
+                .foregroundColor(.black) // Same black font as "Sign In"
+                .cornerRadius(10)
+        }
+    }
+    
     private var authenticationContent: some View {
         VStack(spacing: 15) {
             if viewModel.isCreatingAccount {
@@ -97,11 +109,17 @@ struct ProfileView: View {
             emailTextField
             passwordTextField
             authenticationButton
+            
+            if viewModel.shouldShowResendButton {
+                resendVerificationButton
+            }
+            
             resetPasswordButton
+            
             toggleAuthenticationModeButton
         }
     }
-    
+
     
     
     private var nameTextField: some View {
