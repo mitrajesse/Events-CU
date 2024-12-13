@@ -121,16 +121,18 @@ struct ProfileView: View {
             .colorScheme(.light)
     }
     private var resetPasswordButton: some View {
-            NavigationLink(
-                destination: ResetPasswordView(viewModel: viewModel),
-                isActive: $viewModel.showResetPasswordDialog
-            ) {
-                Text("Forgot Password?")
-                    .foregroundColor(.white)
-                    .underline()
-                    .padding(.top, 5)
-            }
+        Button(action: {
+            viewModel.showResetPasswordDialog = true
+        }) {
+            Text("Forgot Password?")
+                .foregroundColor(.white)
+                .underline()
+                .padding(.top, 5)
         }
+        .navigationDestination(isPresented: $viewModel.showResetPasswordDialog) {
+            ResetPasswordView(viewModel: viewModel)
+        }
+    }
     
     private var passwordTextField: some View {
         SecureField("Password", text: $viewModel.password)
