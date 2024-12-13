@@ -10,13 +10,12 @@ struct ResetPasswordView: View {
                     .ignoresSafeArea()
                 
                 VStack(spacing: 20) {
-                    Spacer() // Push content higher
                     
                     Text("Reset Password")
                         .font(.largeTitle)
                         .bold()
                         .foregroundColor(Color(UIColor(red: 252/255, green: 183/255, blue: 22/255, alpha: 1)))
-                        .padding(.bottom, 20) // Add some bottom padding
+                        .padding(.bottom, 20) // Add some bottom padding for separation
                     
                     TextField("Enter your email", text: $viewModel.resetPasswordEmail)
                         .textFieldStyle(AuthTextFieldStyle())
@@ -37,10 +36,12 @@ struct ResetPasswordView: View {
                             .cornerRadius(10)
                     }
                     
-                    Spacer(minLength: 462.5) // Add some spacing at the bottom
+                    Spacer() // Add space at the bottom
                 }
-                .padding()
+                .padding(.horizontal)
             }
+            .navigationBarTitle("") // Removes the navigation bar's title
+            .navigationBarHidden(true) // Hides the navigation bar to avoid overlap
         }
     }
 }
