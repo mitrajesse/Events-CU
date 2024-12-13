@@ -23,6 +23,7 @@
 		1B7331702CE3F9A5002DEDF1 /* EventAdditionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B73316F2CE3F9A3002DEDF1 /* EventAdditionView.swift */; };
 		1B7331762CE3FA34002DEDF1 /* ContactUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7331752CE3FA32002DEDF1 /* ContactUsView.swift */; };
 		1B7331782CE3FA62002DEDF1 /* AboutUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7331772CE3FA61002DEDF1 /* AboutUsView.swift */; };
+		1BBF6ABE2D0BC89B0084885B /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBF6ABD2D0BC8940084885B /* ResetPasswordView.swift */; };
 		1BCACAC32CE8256700B91FED /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCACAC22CE8256100B91FED /* ShareSheet.swift */; };
 		1BCDD03D2CE2DCC700388723 /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCDD03C2CE2DCBF00388723 /* EventDetailView.swift */; };
 		AFCEDCF72C9522B100173EE2 /* OnCampusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCEDCF62C9522B100173EE2 /* OnCampusView.swift */; };
@@ -43,6 +44,7 @@
 		1B73316F2CE3F9A3002DEDF1 /* EventAdditionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAdditionView.swift; sourceTree = "<group>"; };
 		1B7331752CE3FA32002DEDF1 /* ContactUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsView.swift; sourceTree = "<group>"; };
 		1B7331772CE3FA61002DEDF1 /* AboutUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsView.swift; sourceTree = "<group>"; };
+		1BBF6ABD2D0BC8940084885B /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		1BCACAC22CE8256100B91FED /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		1BCDD03C2CE2DCBF00388723 /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
 		AFCEDCF62C9522B100173EE2 /* OnCampusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnCampusView.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				1B6948452CEA7A1900770CAE /* MoreView.swift */,
 				1BCDD03C2CE2DCBF00388723 /* EventDetailView.swift */,
 				1372053E2CE78353001F1073 /* ProfileView.swift */,
+				1BBF6ABD2D0BC8940084885B /* ResetPasswordView.swift */,
 				1B73316F2CE3F9A3002DEDF1 /* EventAdditionView.swift */,
 				1B7331752CE3FA32002DEDF1 /* ContactUsView.swift */,
 				1B7331772CE3FA61002DEDF1 /* AboutUsView.swift */,
@@ -230,6 +233,7 @@
 				AFCEDCF92C95244C00173EE2 /* OffCampusView.swift in Sources */,
 				1B7331782CE3FA62002DEDF1 /* AboutUsView.swift in Sources */,
 				1B6948462CEA7A1D00770CAE /* MoreView.swift in Sources */,
+				1BBF6ABE2D0BC89B0084885B /* ResetPasswordView.swift in Sources */,
 				AFCEDCF72C9522B100173EE2 /* OnCampusView.swift in Sources */,
 				1B01C8C72C9393F700C50DDC /* Events_CUApp.swift in Sources */,
 				1B7331702CE3F9A5002DEDF1 /* EventAdditionView.swift in Sources */,

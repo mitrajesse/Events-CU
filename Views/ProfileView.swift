@@ -121,54 +121,16 @@ struct ProfileView: View {
             .colorScheme(.light)
     }
     private var resetPasswordButton: some View {
-        Button(action: { viewModel.showResetPasswordDialog = true }) {
-            Text("Forgot Password?")
-                .foregroundColor(.white)
-                .underline()
-                .padding(.top, 5)
-        }
-        .sheet(isPresented: $viewModel.showResetPasswordDialog) {
-            ZStack {
-                Color(UIColor(red: 0/255, green: 56/255, blue: 101/255, alpha: 1)) // Match sign-in background
-                    .ignoresSafeArea()
-                
-                VStack(spacing: 20) {
-                    Text("Reset Password")
-                        .font(.largeTitle)
-                        .bold()
-                        .foregroundColor(Color(UIColor(red: 252/255, green: 183/255, blue: 22/255, alpha: 1)))
-                        .padding()
-                    
-                    TextField("Enter your email", text: $viewModel.resetPasswordEmail)
-                        .textFieldStyle(AuthTextFieldStyle())
-                        .autocapitalization(.none)
-                        .keyboardType(.emailAddress)
-                    
-                    Button(action: viewModel.resetPassword) {
-                        Text("Send Reset Email")
-                            .bold()
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color(UIColor(red: 252/255, green: 183/255, blue: 22/255, alpha: 1)))
-                            .foregroundColor(.black)
-                            .cornerRadius(10)
-                    }
-                    
-                    Button(action: { viewModel.showResetPasswordDialog = false }) {
-                        Text("Cancel")
-                            .bold()
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.red)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
-                    }
-                }
-                .padding()
+            NavigationLink(
+                destination: ResetPasswordView(viewModel: viewModel),
+                isActive: $viewModel.showResetPasswordDialog
+            ) {
+                Text("Forgot Password?")
+                    .foregroundColor(.white)
+                    .underline()
+                    .padding(.top, 5)
             }
         }
-    }
-
     
     private var passwordTextField: some View {
         SecureField("Password", text: $viewModel.password)
