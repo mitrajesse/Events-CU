@@ -94,8 +94,8 @@ struct ProfileView: View {
                 .bold()
                 .frame(maxWidth: .infinity)
                 .padding()
-                .background(Color.orange)
-                .foregroundColor(.white)
+                .background(Color(UIColor(red: 252/255, green: 183/255, blue: 22/255, alpha: 1))) // Matches the "Sign In" button background
+                .foregroundColor(.black) // Same black font as "Sign In"
                 .cornerRadius(10)
         }
     }
@@ -109,11 +109,12 @@ struct ProfileView: View {
             emailTextField
             passwordTextField
             authenticationButton
-            resetPasswordButton
             
             if viewModel.shouldShowResendButton {
                 resendVerificationButton
             }
+            
+            resetPasswordButton
             
             toggleAuthenticationModeButton
         }
