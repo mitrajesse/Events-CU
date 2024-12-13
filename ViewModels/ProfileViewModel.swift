@@ -18,6 +18,8 @@ class ProfileViewModel: ObservableObject {
     @Published var isCreatingAccount = false
     @Published var showResendButton = false
     @Published var displayName = ""
+    @Published var showResetPasswordDialog = false
+    @Published var resetPasswordEmail = ""
     
     func checkLoginState() {
         if let currentUser = Auth.auth().currentUser {
@@ -42,6 +44,23 @@ class ProfileViewModel: ObservableObject {
         } catch {
             self.alertMessage = "Sign out failed: \(error.localizedDescription)"
             self.showAlert = true
+        }
+    }
+    func resetPassword() {
+        guard !resetPasswordEmail.isEmpty else {
+            self.alertMessage = "Please enter your email address."
+            self.showAlert = true
+            return
+        }
+        
+        Auth.auth().sendPasswordReset(withEmail: resetPasswordEmail) { error in
+            if let error = error {
+                self.alertMessage = "Failed to send reset email: \(error.localizedDescription)"
+            } else {
+                self.alertMessage = "Password reset email sent successfully!"
+            }
+            self.showAlert = true
+            self.showResetPasswordDialog = false
         }
     }
     
