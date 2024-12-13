@@ -20,6 +20,9 @@ class ProfileViewModel: ObservableObject {
     @Published var displayName = ""
     @Published var showResetPasswordDialog = false
     @Published var resetPasswordEmail = ""
+    @Published var isAwaitingVerification = false
+    @Published var shouldShowResendButton = false
+    @Published var cachedUser: FirebaseAuth.User?
     
     func checkLoginState() {
         if let currentUser = Auth.auth().currentUser {
@@ -31,6 +34,22 @@ class ProfileViewModel: ObservableObject {
             displayName = ""
         }
     }
+    func resendVerificationEmail() {
+        if let user = cachedUser {
+            user.sendEmailVerification { error in
+                if let error = error {
+                    self.alertMessage = "Failed to resend verification email: \(error.localizedDescription)"
+                } else {
+                    self.alertMessage = "Verification email resent successfully!"
+                }
+                self.showAlert = true
+            }
+        } else {
+            self.alertMessage = "No user is available to resend the verification email."
+            self.showAlert = true
+        }
+    }
+
     
     func signOut() {
         do {
@@ -79,13 +98,16 @@ class ProfileViewModel: ObservableObject {
             }
             
             if !user.isEmailVerified {
-                self.alertMessage = "Email not verified. Please check your inbox and verify your email before logging in."
+                self.alertMessage = "Email not verified. Please check your inbox or resend the verification email."
+                self.cachedUser = user // Cache the user
                 self.showAlert = true
+                self.shouldShowResendButton = true
                 try? Auth.auth().signOut()
                 return
             }
             
             self.isLoggedIn = true
+            self.shouldShowResendButton = false
             self.fetchUserData()
             self.alertMessage = "Logged in successfully!"
             self.showAlert = true
@@ -112,14 +134,16 @@ class ProfileViewModel: ObservableObject {
                 return
             }
             
+            self.cachedUser = user // Cache the user
             user.sendEmailVerification { error in
                 if let error = error {
                     self.alertMessage = "Failed to send verification email: \(error.localizedDescription)"
-                    self.showAlert = true
+                    self.shouldShowResendButton = true
                 } else {
                     self.alertMessage = "Account created! A verification email has been sent. Please verify your email before logging in."
-                    self.showAlert = true
+                    self.shouldShowResendButton = true
                 }
+                self.showAlert = true
             }
             
             let db = Firestore.firestore()
@@ -144,6 +168,9 @@ class ProfileViewModel: ObservableObject {
             }
         }
     }
+
+
+
     
     func fetchUserData() {
         guard let currentUser = Auth.auth().currentUser else { return }
